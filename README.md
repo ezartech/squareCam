@@ -5,7 +5,8 @@ the cameraView dimensions to square. The mask size and positioning is updated on
 orientationChange. Modify mask appearance in squareCam.css.  
 
 Note: this utility does not work with the ezAR snapshot plugin for creating square images. 
-See additional notes below for more info.
+See additional notes below for more info.  
+
 ![logo](screenshot.png)
 
 ##Getting Started
