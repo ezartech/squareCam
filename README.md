@@ -1,4 +1,4 @@
-#ezAR squareCam 
+#ezAR squareCam Utility
 This JavaScript utility simulates a square camera when used with the ezAR VideoOverlay 
 plugin for Cordova. Call squareCam.enable() to reveal a css stylable mask that crops 
 the cameraView dimensions to square. The mask size and positioning is updated on each
