@@ -11,43 +11,53 @@
 // squareCam.disable() - call to hide the mask
 
 var squareCam = {
-   
+    _mask1: null,
+    _mask2: null,
     _initialize: function() {  
-        var body = document.getElementsByTagName('body')[0];
+
+        this._element = document.getElementById('ezarcontainer');
 
         //add mask1 div
-        var newNode = document.createElement('div');
-        newNode.id = "ezarmask1";
-        newNode.className = 'ezarmask';
-        body.appendChild(newNode);
+        this._mask1 = document.createElement('div');
+        this._mask1.id = "ezarmask1";
+        this._mask1.className = 'ezarmask';
+        //body.appendChild(newNode);
 
         //add mask2 div
-        newNode = document.createElement('div');
-        newNode.id = "ezarmask2";
-        newNode.className = 'ezarmask';
-        body.appendChild(newNode);
+        this._mask2 = document.createElement('div');
+        this._mask2.id = "ezarmask2";
+        this._mask2.className = 'ezarmask';
+        //body.appendChild(newNode);
     },
  
-    enable: function(aBool) {
-        window.addEventListener("orientationchange", this._onOrientationChange.bind(squareCam), false);
-        
-        //make mask divs visible
-        var node = document.getElementById('ezarmask1');
-        node.style.display = "block";
-        node = document.getElementById('ezarmask2');
-        node.style.display = "block";
+    _element: null, 
 
+    enable: function() {
+        var element= this._element;
+        var mask1  = this._mask1;
+        var mask2  = this._mask2;
+
+        window.addEventListener("orientationchange", this._onOrientationChange.bind(this), false);
+
+        //make mask divs visible
+        element.appendChild(mask1);
+        mask1.style.display = "block";
+        
+        element.appendChild(mask2);
+        mask2.style.display = "block";
+        
         this._updateMasks();
     },
 
     disable: function() {
         window.removeEventListener("orientationchange", this._onOrientationChange);
 
-        //hide mask divs
-        var node = document.getElementById('ezarmask1');
-        node.style.display = "none";
-        node = document.getElementById('ezarmask2');
-        node.style.display = "none";
+        //hide mask divs       
+        this._mask1.style.display = "none";
+        this._mask1.style.display = "none";
+
+        this._element.removeChild(_mask1);
+        this._element.removeChild(_mask2);        
     },
 
     _onOrientationChange: function() {
@@ -66,20 +76,22 @@ var squareCam = {
     _updateMasks: function() {
         setTimeout(function() {         
          var maskWidth, maskHt;               
-         var orientation = screen.orientation.angle % 180 === 0 ? 'portrait' : 'landscape'
-
+         //var orientation = screen.orientation.angle % 180 === 0 ? 'portrait' : 'landscape'
+         var orientation = (this._element.offsetWidth < this._element.offsetHeight) ? 
+            'portrait' : 'landscape'
+         
          var mask1, mask2;
-         mask1 = document.getElementById('ezarmask1');
-         mask2 = document.getElementById('ezarmask2');
+         mask1 = this._mask1;
+         mask2 = this._mask2;
 
          mask1.style.left = "0px";
          mask1.style.top = "0px";
 
          if (orientation == 'portrait') {
             if (!this._pwindowWidth) 
-                this._pwindowWidth = window.outerWidth;
+                this._pwindowWidth = this._element.offsetWidth;
             if (!this._pwindowHt) 
-                this._pwindowHt = window.outerHeight; 
+                this._pwindowHt = this._element.offsetHeight; 
 
             if (this._pwindowHt < this.pwindowWidth) {
                 var tmp = this._pwindowWidth;
@@ -103,9 +115,9 @@ var squareCam = {
 
          } else { //landscape
             if (!this._lwindowWidth) 
-                this._lwindowWidth = window.outerWidth;
+                this._lwindowWidth = this._element.offsetWidth;
             if (!this._lwindowHt) 
-                this._lwindowHt = window.outerHeight; 
+                this._lwindowHt = this._element.offsetHeight; 
 
             if (this._lwindowWidth < this._lwindowHt) {
                 var tmp = this._lwindowHt;
@@ -127,7 +139,7 @@ var squareCam = {
             mask2.style.width = maskWidth + "px";
             mask2.style.height = maskHt;
          }
-       }, 200);
+       }.bind(this), 200);
     }
 
 };
