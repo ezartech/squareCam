@@ -9,7 +9,7 @@
     position: absolute;
     /* image from http://www.transparenttextures.com/patterns/az-subtle.png*/
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkBAMAAACCzIhnAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMJDhMYEkBm58sAAABISURBVHhe7dExEQAwFINQrMRD/Gurhix/6LGwc48AmUKBToGQMZSOgcyhY25eblx+0ldfffXVV1999dVXX3311VdfffXVV/8Btlgq5Eo+mtMAAAAASUVORK5CYII=');
-    background-color: rgba(220,220,220,1);
+    background-color: rgba(50,50,50,0.8);
 }
 
 
