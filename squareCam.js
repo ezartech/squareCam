@@ -17,14 +17,14 @@ var squareCam = {
 
         //add mask1 div
         var newNode = document.createElement('div');
-        newNode.id = "mask1";
-        newNode.className = 'mask';
+        newNode.id = "ezarmask1";
+        newNode.className = 'ezarmask';
         body.appendChild(newNode);
 
         //add mask2 div
         newNode = document.createElement('div');
-        newNode.id = "mask2";
-        newNode.className = 'mask';
+        newNode.id = "ezarmask2";
+        newNode.className = 'ezarmask';
         body.appendChild(newNode);
     },
  
@@ -32,9 +32,9 @@ var squareCam = {
         window.addEventListener("orientationchange", this._onOrientationChange.bind(squareCam), false);
         
         //make mask divs visible
-        var node = document.getElementById('mask1');
+        var node = document.getElementById('ezarmask1');
         node.style.display = "block";
-        node = document.getElementById('mask2');
+        node = document.getElementById('ezarmask2');
         node.style.display = "block";
 
         this._updateMasks();
@@ -44,9 +44,9 @@ var squareCam = {
         window.removeEventListener("orientationchange", this._onOrientationChange);
 
         //hide mask divs
-        var node = document.getElementById('mask1');
+        var node = document.getElementById('ezarmask1');
         node.style.display = "none";
-        node = document.getElementById('mask2');
+        node = document.getElementById('ezarmask2');
         node.style.display = "none";
     },
 
@@ -69,8 +69,8 @@ var squareCam = {
          var orientation = screen.orientation.angle % 180 === 0 ? 'portrait' : 'landscape'
 
          var mask1, mask2;
-         mask1 = document.getElementById('mask1');
-         mask2 = document.getElementById('mask2');
+         mask1 = document.getElementById('ezarmask1');
+         mask2 = document.getElementById('ezarmask2');
 
          mask1.style.left = "0px";
          mask1.style.top = "0px";

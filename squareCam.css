@@ -4,7 +4,7 @@
 // @license modified MIT
 */
 
-.mask {
+.ezarmask {
     display: none; /* set to block by squareCam.setEnabled() */
     position: absolute;
     /* image from http://www.transparenttextures.com/patterns/az-subtle.png*/
