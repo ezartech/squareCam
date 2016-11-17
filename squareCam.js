@@ -7,6 +7,10 @@
 // @author wayne@ezartech.com
 // @license modified MIT 
 // 
+// Create a containing element (div) with id 'ezarcontainer' into which the 
+//  mask will be displayed. Typically this container will fill 100% of the
+//  app UI.
+//
 // squareCam.enable() - call to show the mask
 // squareCam.disable() - call to hide the mask
 
@@ -29,8 +33,6 @@ var squareCam = {
         this._mask2.className = 'ezarmask';
         //body.appendChild(newNode);
     },
- 
-    _element: null, 
 
     enable: function() {
         var element= this._element;
@@ -60,6 +62,12 @@ var squareCam = {
         this._element.removeChild(_mask2);        
     },
 
+    getSize: function() {
+        return this._size;
+    },
+
+    _element: null, 
+
     _onOrientationChange: function() {
         this._updateMasks();
     },
@@ -68,6 +76,7 @@ var squareCam = {
     //this is due to odd results on my nexus5 android 6 device
     // where the width was inconsistent after several rotations 
     // resulting in misaligned mask2
+    _size: 0,
     _pwindowWidth: 0,
     _pwindowHt: 0,
     _lwindowWidth: 0,
@@ -99,7 +108,9 @@ var squareCam = {
                 this._pwindowHt = tmp;
             }
 
-            //console.log('pwidth', this._pwindowWidth, 'pheight', this._pwindowHt);
+            this._size - this._pwindowWidth;
+
+            //console.log('size', this._size, 'pwidth', this._pwindowWidth, 'pheight', this._pwindowHt);
 
             //set mask at top & bottom of screen
             maskWidth = "100%";
@@ -125,7 +136,9 @@ var squareCam = {
                 this._lwindowWidth = tmp;
             }
             
-            //console.log('lwidth', this._lwindowWidth, 'lheight', this._lwindowHt);
+            this._size - this._pwindowWidth;
+
+            //console.log('size', this._size, 'lwidth', this._lwindowWidth, 'lheight', this._lwindowHt);
 
             //set mask at left & right sides of screen
             maskHt = "100%";
